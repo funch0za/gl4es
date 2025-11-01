@@ -993,7 +993,7 @@ void gl4es_glXDestroyContext(Display *display, GLXContext ctx) {
     DBG(printf("glXDestroyContext(%p, %p), fbcontext_count=%d, ctx_type=%d\n", display, ctx, fbcontext_count, (ctx)?ctx->contextType:0);)
     if(globals4es.usefb)
         --fbcontext_count;
-    if (ctx->eglContext) {
+    if (ctx != NULL && ctx->eglContext) {
         // need to bind back the context to delete stuff?
         LOAD_EGL(eglMakeCurrent);
         if(eglSurface!=ctx->eglSurface || eglContext!=ctx->eglContext) {
@@ -1056,10 +1056,13 @@ void gl4es_glXDestroyContext(Display *display, GLXContext ctx) {
             fbdev = -1;
         }*/
     }
-    if(glxContext==ctx)
+    if(glxContext==ctx) {
         glxContext = NULL;
-        
+        ctx = NULL;
+    }
+      
     free(ctx);
+    ctx = NULL;
     return;
 }
 
