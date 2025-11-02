@@ -886,7 +886,14 @@ GLXContext gl4es_glXCreateContextAttribsARB(Display *display, GLXFBConfig config
             printf("config is RGBA:%d%d%d%d, depth=%d, stencil=%d, multisample=%d/%d doublebuff=%d, drawable=%d\n", config->redBits, config->greenBits, config->blueBits, config->alphaBits, config->depthBits, config->stencilBits, config->multiSampleSize, config->nMultiSampleBuffers, config->doubleBufferMode, config->drawableType); 
         else printf("\n");
     )
-    if(config && config->drawableType==GLX_PBUFFER_BIT) {
+
+    if (config == NULL) {
+        CheckEGLErrors();
+        LOGE("Bad GLXFBConfig");
+        return NULL;
+    }
+
+    if(config->drawableType==GLX_PBUFFER_BIT) {
         return createPBufferContext(display, share_context, config);
     } else {
         EGLint type = 0;
@@ -2079,6 +2086,12 @@ XVisualInfo *gl4es_glXGetVisualFromFBConfig(Display *display, GLXFBConfig config
 GLXContext gl4es_glXCreateNewContext(Display *display, GLXFBConfig config,
                                int render_type, GLXContext share_list,
                                Bool is_direct) {
+    if (config == NULL) {
+        CheckEGLErrors();
+        LOGE("Bad GLXFBConfig");
+        return NULL;
+    }
+
     DBG(printf("glXCreateNewContext(%p, %p, %d, %p, %i), drawableType=0x%02X\n", display, config, render_type, share_list, is_direct, (config)?config->drawableType:0);)
     if(render_type!=GLX_RGBA_TYPE)
         return 0;
