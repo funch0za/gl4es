@@ -4,17 +4,17 @@
 #include "gles.h"
 
 typedef struct {
-    GLenum          mode;
-    GLfloat         density;
-    GLenum          distance;
-    GLfloat         start;
-    GLfloat         end;
-    GLfloat         index;
-    GLfloat         color[4];
-    GLenum          coord_src;
+  GLenum mode;
+  GLfloat density;
+  GLenum distance;
+  GLfloat start;
+  GLfloat end;
+  GLfloat index;
+  GLfloat color[4];
+  GLenum coord_src;
 } fog_t;
 
-void APIENTRY_GL4ES gl4es_glFogfv(GLenum pname, const GLfloat* params);
+void APIENTRY_GL4ES gl4es_glFogfv(GLenum pname, const GLfloat *params);
 void APIENTRY_GL4ES gl4es_glFogf(GLenum pname, GLfloat param);
 
 void APIENTRY_GL4ES gl4es_glFogCoordf(GLfloat coord);

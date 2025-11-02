@@ -5,7 +5,7 @@
 
 void rpi_init();
 void rpi_fini();
-void* create_rpi_window(int w, int h);
-void delete_rpi_window(void* win);
+void *create_rpi_window(int w, int h);
+void delete_rpi_window(void *win);
 
 #endif // _GLX_RPI_H_

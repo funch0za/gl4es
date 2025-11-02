@@ -248,7 +248,7 @@
 #define skip_glStencilOpSeparate
 #define skip_glClearStencil
 
-//uniform.c
+// uniform.c
 #define skip_glGetUniformfv
 #define skip_glGetUniformiv
 #define skip_glUniform1f

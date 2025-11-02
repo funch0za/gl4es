@@ -28,8 +28,7 @@
 
 #include "../gl4es.h"
 
-void _math_init_eval( void );
-
+void _math_init_eval(void);
 
 /*
  * Horner scheme for Bezier curves
@@ -55,11 +54,8 @@ void _math_init_eval( void );
  * [i] = (n-i+1)/i * [i-1]     and     [0] = 1
  */
 
-
-void
-_math_horner_bezier_curve(const GLfloat *cp, GLfloat *out, GLfloat t,
-			  GLuint dim, GLuint order);
-
+void _math_horner_bezier_curve(const GLfloat *cp, GLfloat *out, GLfloat t,
+                               GLuint dim, GLuint order);
 
 /*
  * Tensor product Bezier surfaces
@@ -75,10 +71,8 @@ _math_horner_bezier_curve(const GLfloat *cp, GLfloat *out, GLfloat t,
  * control net cn.
  */
 
-void
-_math_horner_bezier_surf(GLfloat *cn, GLfloat *out, GLfloat u, GLfloat v,
-			 GLuint dim, GLuint uorder, GLuint vorder);
-
+void _math_horner_bezier_surf(GLfloat *cn, GLfloat *out, GLfloat u, GLfloat v,
+                              GLuint dim, GLuint uorder, GLuint vorder);
 
 /*
  * The direct de Casteljau algorithm is used when a point on the
@@ -94,10 +88,8 @@ _math_horner_bezier_surf(GLfloat *cn, GLfloat *out, GLfloat u, GLfloat v,
  * values in the control net cn.
  */
 
-void
-_math_de_casteljau_surf(GLfloat *cn, GLfloat *out, GLfloat *du, GLfloat *dv,
-			GLfloat u, GLfloat v, GLuint dim,
-			GLuint uorder, GLuint vorder);
-
+void _math_de_casteljau_surf(GLfloat *cn, GLfloat *out, GLfloat *du,
+                             GLfloat *dv, GLfloat u, GLfloat v, GLuint dim,
+                             GLuint uorder, GLuint vorder);
 
 #endif

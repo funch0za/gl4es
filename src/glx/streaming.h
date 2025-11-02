@@ -8,15 +8,18 @@
 #define GL_APIENTRYP
 #endif
 #ifndef GL_IMG_texture_stream
-#define GL_TEXTURE_STREAM_IMG                                   0x8C0D     
-#define GL_TEXTURE_NUM_STREAM_DEVICES_IMG                       0x8C0E     
-#define GL_TEXTURE_STREAM_DEVICE_WIDTH_IMG                      0x8C0F
-#define GL_TEXTURE_STREAM_DEVICE_HEIGHT_IMG                     0x8EA0     
-#define GL_TEXTURE_STREAM_DEVICE_FORMAT_IMG                     0x8EA1      
-#define GL_TEXTURE_STREAM_DEVICE_NUM_BUFFERS_IMG                0x8EA2     
-typedef void (GL_APIENTRYP PFNGLTEXBINDSTREAMIMGPROC) (GLint device, GLint deviceoffset);
-typedef const GLubyte *(GL_APIENTRYP PFNGLGETTEXSTREAMDEVICENAMEIMGPROC) (GLenum target);
-typedef void (GL_APIENTRYP PFNGLGETTEXSTREAMDEVICEATTRIBUTEIVIMGPROC) (GLenum target, GLenum pname, GLint *params);
+#define GL_TEXTURE_STREAM_IMG 0x8C0D
+#define GL_TEXTURE_NUM_STREAM_DEVICES_IMG 0x8C0E
+#define GL_TEXTURE_STREAM_DEVICE_WIDTH_IMG 0x8C0F
+#define GL_TEXTURE_STREAM_DEVICE_HEIGHT_IMG 0x8EA0
+#define GL_TEXTURE_STREAM_DEVICE_FORMAT_IMG 0x8EA1
+#define GL_TEXTURE_STREAM_DEVICE_NUM_BUFFERS_IMG 0x8EA2
+typedef void(GL_APIENTRYP PFNGLTEXBINDSTREAMIMGPROC)(GLint device,
+                                                     GLint deviceoffset);
+typedef const GLubyte *(GL_APIENTRYP PFNGLGETTEXSTREAMDEVICENAMEIMGPROC)(
+    GLenum target);
+typedef void(GL_APIENTRYP PFNGLGETTEXSTREAMDEVICEATTRIBUTEIVIMGPROC)(
+    GLenum target, GLenum pname, GLint *params);
 #define GL_IMG_texture_stream 1
 #endif
 
@@ -24,13 +27,15 @@ extern PFNGLTEXBINDSTREAMIMGPROC *glTexBindStreamIMG;
 extern PFNGLGETTEXSTREAMDEVICEATTRIBUTEIVIMGPROC *glGetTexAttrIMG;
 extern PFNGLGETTEXSTREAMDEVICENAMEIMGPROC *glGetTexDeviceIMG;
 
-extern int gl_stream;		//0 if no streaming not 0 if streaming available
+extern int gl_stream; // 0 if no streaming not 0 if streaming available
 
-// Function to start the Streaming texture Cache. Return 0 if failed, non-0 if OK.
+// Function to start the Streaming texture Cache. Return 0 if failed, non-0 if
+// OK.
 int InitStreamingCache();
 // Function to get a Streaming buffer address
-void* GetStreamingBuffer(int buff);
-// Function to add a new texture of size Width*Height, with fake Texture ID "ID". Return the StreamingID or -1 if failed.
+void *GetStreamingBuffer(int buff);
+// Function to add a new texture of size Width*Height, with fake Texture ID
+// "ID". Return the StreamingID or -1 if failed.
 int AddStreamed(int width, int height, unsigned int ID);
 // Function to free a streamed texture ID
 void FreeStreamed(int ID);

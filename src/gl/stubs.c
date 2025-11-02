@@ -3,4 +3,6 @@
 
 #define STUB errorShim(GL_INVALID_VALUE);
 
-NonAliasExportDecl(void,glClampColorARB,(GLenum target, GLenum clamp)){STUB}
+NonAliasExportDecl(void, glClampColorARB, (GLenum target, GLenum clamp)) {
+  STUB
+}
