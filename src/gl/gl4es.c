@@ -291,14 +291,32 @@ AliasExport(void, glInterleavedArrays, ,
 
 // immediate mode functions
 void APIENTRY_GL4ES gl4es_glBegin(GLenum mode) {
-  glstate->list.begin = 1;
-  if (!glstate->list.active)
-    glstate->list.active = alloc_renderlist();
-  // small optim... continue a render command if possible
-  glstate->list.active = NewDrawStage(glstate->list.active, mode);
-  glstate->list.pending = 0;
-  glstate->list.active->use_vbo_array = 2;
-  noerrorShimNoPurge(); // TODO, check Enum validity
+  switch (mode) {
+    case GL_POINTS:
+    case GL_LINES:
+    case GL_LINE_STRIP:
+    case GL_LINE_LOOP:
+    case GL_TRIANGLES:
+    case GL_TRIANGLE_STRIP:
+    case GL_TRIANGLE_FAN:
+    case GL_QUADS:
+    case GL_QUAD_STRIP:
+    case GL_POLYGON:
+      glstate->list.begin = 1;
+      if (!glstate->list.active)
+        glstate->list.active = alloc_renderlist();
+      // small optim... continue a render command if possible
+      glstate->list.active = NewDrawStage(glstate->list.active, mode);
+      glstate->list.pending = 0;
+      glstate->list.active->use_vbo_array = 2;
+      noerrorShimNoPurge();
+      break;
+    default:
+      errorShim(GL_INVALID_ENUM);
+      free(glstate->list.active);
+      glstate->list.active = NULL;
+      break;
+  }
 }
 AliasExport(void, glBegin, , (GLenum mode));
 
