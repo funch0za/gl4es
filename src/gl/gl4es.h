@@ -99,9 +99,9 @@ void APIENTRY_GL4ES gl4es_glStencilMaskSeparate(GLenum face, GLuint mask);
 void APIENTRY_GL4ES gl4es_glMultiDrawArrays(GLenum mode, const GLint *first,
                                             const GLsizei *count,
                                             GLsizei primcount);
-void APIENTRY_GL4ES gl4es_glMultiDrawElements(GLenum mode, GLsizei *count,
+void APIENTRY_GL4ES gl4es_glMultiDrawElements(GLenum mode, const GLsizei *count,
                                               GLenum type,
-                                              const void *const *indices,
+                                              const GLvoid ** indices,
                                               GLsizei primcount);
 void APIENTRY_GL4ES gl4es_glMultiDrawElementsBaseVertex(
     GLenum mode, GLsizei *count, GLenum type, const void *const *indices,
